@@ -23,7 +23,7 @@ namespace API.Repository
         }
 
         //// <inheritdoc />
-        public IEnumerable<TransactionListDto> List(Guid accountId)
+        public IEnumerable<TransactionDto> List(Guid accountId)
         {
             return transactionRepository.List(accountId);
         }
