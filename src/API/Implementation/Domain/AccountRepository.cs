@@ -30,7 +30,7 @@ namespace API.Repository
             {
                 Id = Guid.NewGuid(),
                 CreationDate = DateTimeOffset.UtcNow,
-                CostumerId = customerId,
+                CustomerId = customerId,
                 Balance = initialCredit
             };
 

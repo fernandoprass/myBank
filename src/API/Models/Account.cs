@@ -12,7 +12,7 @@ namespace API.Models {
         public Guid Id { get; set; }
         public DateTimeOffset CreationDate { get; set; }
         public double Balance { get; set; }
-        public int CostumerId { get; set; }
+        public int CustomerId { get; set; }
 
         public virtual ICollection<Transaction> Transactions { get; set; }
     }
