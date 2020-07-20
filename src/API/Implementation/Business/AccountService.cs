@@ -29,7 +29,7 @@ namespace API.Repository
         private bool IsValidCustomer(int customerId)
         {
             //todo Implement IsValidCustomer
-            throw new NotImplementedException();
+            return true;
         }
 
         /// <summary>Check if the custormer exists</summary>
