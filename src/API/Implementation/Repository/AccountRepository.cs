@@ -8,18 +8,19 @@ namespace API.Repository
 {
     public class AccountRepository : IAccountRepository
     {
-        private readonly MyBankContext dbContext;
+        //private readonly MyBankContext dbContext;
 
-        public AccountRepository(MyBankContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
+        //public AccountRepository(MyBankContext dbContext)
+        //{
+        //    this.dbContext = dbContext;
+        //}
 
 
         /// <inheritdoc />
         public Account GetById(Guid id)
         {
-            return dbContext.Account.FirstOrDefault(x => x.Id == id);
+            //return dbContext.Account.FirstOrDefault(x => x.Id == id);
+            return null;
         }
 
 
@@ -36,8 +37,8 @@ namespace API.Repository
 
             try
             {
-                dbContext.Entry(account).State = EntityState.Added;
-                dbContext.SaveChanges();
+                //dbContext.Entry(account).State = EntityState.Added;
+                //dbContext.SaveChanges();
                 return account;
             }
             catch 
@@ -51,8 +52,8 @@ namespace API.Repository
         {
             try
             {
-                dbContext.Entry(account).State = EntityState.Modified;
-                dbContext.SaveChanges();
+                //dbContext.Entry(account).State = EntityState.Modified;
+                //dbContext.SaveChanges();
                 return account;
             }
             catch

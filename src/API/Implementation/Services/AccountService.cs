@@ -10,16 +10,12 @@ namespace API.Repository
 
         private readonly IAccountRepository accountRepository;
 
-        private readonly ITransactionService transactionService;
-
         /// <summary> the account service constructor </summary>
         /// <param name="accountRepository"></param>
         /// <param name="transactionService"></param>
-        public AccountService(IAccountRepository accountRepository, ITransactionService transactionService)
+        public AccountService(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
-            this.transactionService = transactionService;
-
         }
 
         #region Validation

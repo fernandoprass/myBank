@@ -1,4 +1,5 @@
-﻿using API.Contracts;
+﻿using System;
+using API.Contracts;
 using API.Contracts.Business;
 using API.Implementation.Business;
 using API.Models;
@@ -25,7 +26,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            ConfigureDatabaseConnection(services);
+            
             ConfigureDependencyInjection(services);
         }
 
@@ -35,8 +36,9 @@ namespace API
         /// <param name="services"></param>
         private void ConfigureDatabaseConnection(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("MyBankDB");
-            services.AddDbContext<MyBankContext>(o => o.UseSqlServer(connection));
+            throw new NotImplementedException();
+            //string connection = Configuration.GetConnectionString("MyBankDB");
+            //services.AddDbContext<MyBankContext>(o => o.UseSqlServer(connection));
         }
 
         /// <summary>

@@ -1,8 +1,7 @@
 ﻿using API.Contracts;
-using API.Repository;
+using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
-using API.Models;
 
 namespace API.Controllers
 {
