@@ -8,8 +8,5 @@ namespace API.Models
         public DateTimeOffset Date { get; set; }
         public double Value { get; set; }
         public Guid AccountId { get; set; }
-
-        public virtual Account Account { get; set; }
-        public virtual Customer Customer { get; set; }
     }
 }

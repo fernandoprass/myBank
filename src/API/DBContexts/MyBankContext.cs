@@ -20,11 +20,6 @@ namespace API.Models {
 
          modelBuilder.Entity<Transaction>(entity => {
             entity.Property(e => e.Date).HasColumnType("date");
-
-            entity.HasOne(d => d.Account)
-                .WithMany(p => p.Transactions)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Account_Transactions");
          });
 
          modelBuilder.Entity<Account>(entity => {

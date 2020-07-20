@@ -42,11 +42,11 @@ namespace API.Repository
         }
 
         /// <inheritdoc />
-        public IEnumerable<TransactionListDto> List(Guid accountId)
+        public IEnumerable<TransactionDto> List(Guid accountId)
         {
-            return dbContext.Transaction.Where(x => x.Account.Id == accountId)
+            return dbContext.Transaction.Where(x => x.AccountId == accountId)
                                         .OrderBy(x => x.Date)
-                                        .Select(x => new TransactionListDto(x.Customer.Name, x.Date, 0))
+                                        .Select(x => new TransactionDto(x.Date, x.Value))
                                         .ToList();
         }
     }

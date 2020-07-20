@@ -16,6 +16,6 @@ namespace API.Contracts
         /// <summary> Return the transactions </summary>
         /// <param name="accountId">Account identifier</param>
         /// <returns>A list of transactions</returns>
-        IEnumerable<TransactionListDto> List(Guid accountId);
+        IEnumerable<TransactionDto> List(Guid accountId);
     }
 }
