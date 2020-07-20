@@ -28,7 +28,8 @@ namespace API.Repository
         /// <returns>TRUE if the customer exists</returns>
         private bool IsValidCustomer(int customerId)
         {
-            return true;
+            //todo Implement IsValidCustomer
+            throw new NotImplementedException();
         }
 
         /// <summary>Check if the custormer exists</summary>
@@ -75,6 +76,15 @@ namespace API.Repository
             {
                 throw new Exception(response.Message);
             }
+        }
+
+        /// <inheritdoc />
+        public double UpdateBalance(Guid accountId, double value)
+        {
+            var account = accountRepository.GetById(accountId);
+            account.Balance += value;
+            account = accountRepository.Update(account);
+            return account.Balance;
         }
         #endregion
     }

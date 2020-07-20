@@ -23,7 +23,7 @@ namespace API.Repository
         {
             Transaction transaction = new Transaction
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 Date = DateTimeOffset.UtcNow,
                 AccountId = accountId,
                 Value = value

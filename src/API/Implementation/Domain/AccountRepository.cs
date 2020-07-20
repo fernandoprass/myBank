@@ -2,6 +2,7 @@
 using API.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 
 namespace API.Repository
 {
@@ -14,12 +15,20 @@ namespace API.Repository
             this.dbContext = dbContext;
         }
 
+
+        /// <inheritdoc />
+        public Account GetById(Guid id)
+        {
+            return dbContext.Account.FirstOrDefault(x => x.Id == id);
+        }
+
+
         /// <inheritdoc />
         public Account Add(int customerId, double initialCredit)
         {
             Account account = new Account
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 CreationDate = DateTimeOffset.UtcNow,
                 CostumerId = customerId,
                 Balance = initialCredit
@@ -32,6 +41,21 @@ namespace API.Repository
                 return account;
             }
             catch 
+            {
+                throw new Exception(Response.Failure.Message);
+            }
+        }
+
+        /// <inheritdoc />
+        public Account Update(Account account)
+        {
+            try
+            {
+                dbContext.Entry(account).State = EntityState.Modified;
+                dbContext.SaveChanges();
+                return account;
+            }
+            catch
             {
                 throw new Exception(Response.Failure.Message);
             }
