@@ -47,8 +47,8 @@ namespace API
         /// <param name="services"></param>
         private static void ConfigureDependencyInjection(IServiceCollection services)
         {
-            services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICustomerService, UserService>();
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<ITransactionRepository, TransactionRepository>();

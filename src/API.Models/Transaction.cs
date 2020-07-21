@@ -2,6 +2,7 @@
 
 namespace API.Models
 {
+    /// <summary> The transcation data access object </summary>
     public partial class Transaction
     {
         public Guid Id { get; set; }

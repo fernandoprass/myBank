@@ -5,18 +5,18 @@ using API.Models;
 namespace API.Implementation.Business
 {
     /// <summary>The Customer Service class</summary>
-    public class CustomerService : ICustomerService {
-      private readonly ICustomerRepository customerRepository;
+    public class UserService : ICustomerService {
+      private readonly IUserRepository _userRepository;
 
       /// <summary>The AppointmentBusinessService class constructor</summary>
       /// <param name="appointmentDomainService"></param>
-      public CustomerService(ICustomerRepository customerRepository) {
-         this.customerRepository = customerRepository;
+      public UserService(IUserRepository userRepository) {
+         this._userRepository = userRepository;
       }
 
       /// <inheritdoc />
-      public Customer Get(int id) {
-         return customerRepository.Get(id);
+      public User Get(int id) {
+         return _userRepository.Get(id);
       }
    }
 }
