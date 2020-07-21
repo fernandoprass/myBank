@@ -4,6 +4,7 @@ using API.Models;
 
 namespace API.Implementation.Business
 {
+    /// <summary>The Customer Service class</summary>
     public class CustomerService : ICustomerService {
       private readonly ICustomerRepository customerRepository;
 

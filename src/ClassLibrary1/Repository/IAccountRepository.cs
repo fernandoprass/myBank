@@ -17,10 +17,11 @@ namespace API.Contracts
         /// <returns>An exists account object</returns>
         Account GetById(Guid id);
 
-        /// <summary>Update an account</summary>
-        /// <param name="account">Account object</param>
-        /// <returns>The new account object</returns>
-        Account Update(Account account);
+        /// <summary>UpdateBalance an account</summary>
+        /// <param name="id">Account identifier</param>
+        /// <param name="balance">Balance value</param>
+        /// <returns>The new account balance</returns>
+        void UpdateBalance(Guid id, double balance);
     }
 }
 

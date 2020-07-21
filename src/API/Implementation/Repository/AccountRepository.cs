@@ -1,28 +1,32 @@
 ﻿using API.Contracts;
+using API.DBContexts;
 using API.Models;
-using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace API.Repository
 {
+    /// <summary> The Account Repository class </summary>
     public class AccountRepository : IAccountRepository
     {
-        //private readonly MyBankContext dbContext;
+        private static string Filename => "Account";
 
-        //public AccountRepository(MyBankContext dbContext)
-        //{
-        //    this.dbContext = dbContext;
-        //}
+        /// <summary> Get the list of Account from Json file </summary>
+        /// <returns></returns>
+        private static List<Account> GetAccountList()
+        {
 
+            var json = DBContext.Get(Filename);
+            return json != null ? JsonConvert.DeserializeObject<List<Account>>(json) : new List<Account>();
+        }
 
         /// <inheritdoc />
         public Account GetById(Guid id)
         {
-            //return dbContext.Account.FirstOrDefault(x => x.Id == id);
-            return null;
+            return GetAccountList().LastOrDefault(x => x.Id == id);
         }
-
 
         /// <inheritdoc />
         public Account Add(int customerId, double initialCredit)
@@ -35,30 +39,32 @@ namespace API.Repository
                 Balance = initialCredit
             };
 
-            try
-            {
-                //dbContext.Entry(account).State = EntityState.Added;
-                //dbContext.SaveChanges();
-                return account;
-            }
-            catch 
-            {
-                throw new Exception(Response.Failure.Message);
-            }
+            var accounts = GetAccountList();
+
+            accounts.Add(account);
+            Save(accounts);
+            return account;
         }
 
         /// <inheritdoc />
-        public Account Update(Account account)
+        public void UpdateBalance(Guid id, double balance)
+        {
+            var accounts = GetAccountList();
+            accounts.First(x => x.Id == id).Balance = balance;
+            Save(accounts);
+        }
+
+        /// <summary> Save data </summary>
+        /// <param name="accounts"></param>
+        private static void Save(List<Account> accounts)
         {
             try
             {
-                //dbContext.Entry(account).State = EntityState.Modified;
-                //dbContext.SaveChanges();
-                return account;
+                DBContext.Write(Filename, accounts);
             }
-            catch
+            catch (Exception e)
             {
-                throw new Exception(Response.Failure.Message);
+                throw new Exception(e.Message);
             }
         }
     }

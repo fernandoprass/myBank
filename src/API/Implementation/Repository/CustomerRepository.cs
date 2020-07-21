@@ -3,8 +3,8 @@ using API.Models;
 using System.Linq;
 
 namespace API.Repository {
-   /// <summary>The Customer domain class</summary>
-   public class CustomerRepository : ICustomerRepository {
+    /// <summary>The Customer Repository class</summary>
+    public class CustomerRepository : ICustomerRepository {
       private readonly MyBankContext _dbContext;
 
       /// <summary>The class constructor</summary>

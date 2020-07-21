@@ -1,10 +1,10 @@
-﻿using System;
-using System.Data;
-using API.Contracts;
+﻿using API.Contracts;
 using API.Models;
+using System;
 
 namespace API.Repository
 {
+    /// <summary> The Account Service class </summary>
     public class AccountService : IAccountService
     {
 
@@ -75,11 +75,11 @@ namespace API.Repository
         }
 
         /// <inheritdoc />
-        public double UpdateBalance(Guid accountId, double value)
+        public double UpdateBalance(Guid id, double value)
         {
-            var account = accountRepository.GetById(accountId);
+            var account = accountRepository.GetById(id);
             account.Balance += value;
-            account = accountRepository.Update(account);
+            accountRepository.UpdateBalance(id, account.Balance);
             return account.Balance;
         }
         #endregion

@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace API.Repository
 {
+    /// <summary> The Transaction Repository class </summary>
     public class TransactionRepository : ITransactionRepository
     {
         private readonly MyBankContext dbContext;
