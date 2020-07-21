@@ -1,25 +1,21 @@
-﻿using System;
-using System.Data;
-using API.Contracts;
+﻿using API.Contracts;
 using API.Models;
+using System;
 
 namespace API.Repository
 {
+    /// <summary> The Account Service class </summary>
     public class AccountService : IAccountService
     {
 
         private readonly IAccountRepository accountRepository;
 
-        private readonly ITransactionService transactionService;
-
         /// <summary> the account service constructor </summary>
         /// <param name="accountRepository"></param>
         /// <param name="transactionService"></param>
-        public AccountService(IAccountRepository accountRepository, ITransactionService transactionService)
+        public AccountService(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
-            this.transactionService = transactionService;
-
         }
 
         #region Validation
@@ -79,11 +75,11 @@ namespace API.Repository
         }
 
         /// <inheritdoc />
-        public double UpdateBalance(Guid accountId, double value)
+        public double UpdateBalance(Guid id, double value)
         {
-            var account = accountRepository.GetById(accountId);
+            var account = accountRepository.GetById(id);
             account.Balance += value;
-            account = accountRepository.Update(account);
+            accountRepository.UpdateBalance(id, account.Balance);
             return account.Balance;
         }
         #endregion

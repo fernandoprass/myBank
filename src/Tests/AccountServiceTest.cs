@@ -53,7 +53,7 @@ namespace Tests
         }
 
         [Fact]
-        /// <summary> Update account balance increasing the value</summary>
+        /// <summary> UpdateBalance account balance increasing the value</summary>
         public void UpdateBalance_ReceivedPositiveValue_IncreaseBalance()
         {
             // Arrange
@@ -62,7 +62,7 @@ namespace Tests
             double credit = 50;
 
             accountRepositoryMock.Setup(x => x.GetById(account.Id)).Returns(account);
-            accountRepositoryMock.Setup(x => x.Update(account)).Returns(account);
+            accountRepositoryMock.Setup(x => x.UpdateBalance(account)).Returns(account);
 
             // Act
             var result = accountService.UpdateBalance(account.Id, credit);
@@ -72,7 +72,7 @@ namespace Tests
         }
 
         [Fact]
-        /// <summary> Update account balance decreasing the value</summary>
+        /// <summary> UpdateBalance account balance decreasing the value</summary>
         public void UpdateBalance_ReceivedNegativeValue_DecreaseBalance()
         {
             // Arrange
@@ -81,7 +81,7 @@ namespace Tests
             double debit = -20;
 
             accountRepositoryMock.Setup(x => x.GetById(account.Id)).Returns(account);
-            accountRepositoryMock.Setup(x => x.Update(account)).Returns(account);
+            accountRepositoryMock.Setup(x => x.UpdateBalance(account)).Returns(account);
 
             // Act
             var result = accountService.UpdateBalance(account.Id, debit);

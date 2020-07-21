@@ -13,10 +13,10 @@ namespace API.Contracts
         /// <returns>A new Account object</returns>
         Account Add(int customerId, double initialCredit);
 
-        /// <summary>Update an account</summary>
-        /// <param name="accountId">Account identifier</param>
+        /// <summary>UpdateBalance an account</summary>
+        /// <param name="id">Account identifier</param>
         /// <param name="value">If the value is positive it is a deposit, if negative it is a withdrawal</param>
         /// <returns>The new account balance</returns>
-        double UpdateBalance(Guid accountId, double value);
+        double UpdateBalance(Guid id, double value);
     }
 }

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 namespace API.Repository
 {
-    /// <summary>The Account Business Service</summary>
-    /// 
+    /// <summary> The Transaction Service class </summary>
     public class TransactionService : ITransactionService
     {
         private readonly ITransactionRepository transactionRepository;
