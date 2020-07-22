@@ -1,0 +1,32 @@
+[
+  {
+    "Id": "a5dd543d-2ab6-4aaa-bc04-60534df6f9d5",
+    "CreationDate": "2020-07-22T18:10:24.0000553+01:00",
+    "Balance": 0.0,
+    "CustomerId": 7
+  },
+  {
+    "Id": "c4811df4-edf7-4da5-9ab2-cf1a272cd1ac",
+    "CreationDate": "2020-07-22T18:13:07.7972091+01:00",
+    "Balance": 0.0,
+    "CustomerId": 1
+  },
+  {
+    "Id": "754c19d1-0158-454c-bbe8-66e7c066ca3b",
+    "CreationDate": "2020-07-22T18:15:59.1807191+01:00",
+    "Balance": 0.0,
+    "CustomerId": 1
+  },
+  {
+    "Id": "754c19d1-0158-454c-bbe8-66e7c066ca3b",
+    "CreationDate": "2020-07-22T18:15:59.1807191+01:00",
+    "Balance": 100.0,
+    "CustomerId": 1
+  },
+  {
+    "Id": "affd5c1f-4148-4db9-9db9-e6c781473304",
+    "CreationDate": "2020-07-22T17:16:37.7909729+00:00",
+    "Balance": -50.0,
+    "CustomerId": 1
+  }
+]

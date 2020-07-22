@@ -51,9 +51,9 @@ namespace API.Implementation
         /// <inheritdoc />
         public bool UpdateBalance(Guid id, double balance)
         {
-            var accounts = GetAccountList();
-            accounts.First(x => x.Id == id).Balance = balance;
-            return Save(accounts);
+            var account = GetById(id);
+            account.Balance = balance;
+            return Save(account);
         }
     }
 }
