@@ -1,6 +1,7 @@
-﻿using API.Repository;
+﻿using API.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using API.Models;
 
 namespace API.Controllers
 {
@@ -23,11 +24,23 @@ namespace API.Controllers
         /// <summary> Return the transactions </summary>
         /// <param name="accountId">Account identifier</param>
         /// <returns>A list of transactions</returns>
-        [HttpGet("Get")]
+        [HttpGet("List")]
         public IActionResult List(Guid accountId)
         {
             var transaction = transactionService.List(accountId);
             return new OkObjectResult(transaction);
+        }
+
+        /// <summary> Add a new account </summary>
+        /// <param name="customerId">Customer identifier</param>
+        /// <param name="initialCredit">Initial credit</param>
+        /// <returns>The result of the operation</returns>
+        [HttpPost("Add")]
+        public Transaction Add([FromQuery] Guid accountId, double value)
+        {
+
+            var transaction = transactionService.Add(accountId, value);
+            return transaction;
         }
     }
 }

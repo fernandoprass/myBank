@@ -6,18 +6,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace API.Repository
+namespace API.Implementation
 {
     /// <summary> The Account Repository class </summary>
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : Repository, IAccountRepository
     {
         private static string Filename => "Account";
+
+        /// <summary> The Account Repository class constructor </summary>
+        public AccountRepository() : base(Filename)
+        {
+
+        }
 
         /// <summary> Get the list of Account from Json file </summary>
         /// <returns></returns>
         private static List<Account> GetAccountList()
         {
-
             var json = DBContext.Get(Filename);
             return json != null ? JsonConvert.DeserializeObject<List<Account>>(json) : new List<Account>();
         }
@@ -39,33 +44,16 @@ namespace API.Repository
                 Balance = initialCredit
             };
 
-            var accounts = GetAccountList();
-
-            accounts.Add(account);
-            Save(accounts);
+            Save(account);
             return account;
         }
 
         /// <inheritdoc />
-        public void UpdateBalance(Guid id, double balance)
+        public bool UpdateBalance(Guid id, double balance)
         {
             var accounts = GetAccountList();
             accounts.First(x => x.Id == id).Balance = balance;
-            Save(accounts);
-        }
-
-        /// <summary> Save data </summary>
-        /// <param name="accounts"></param>
-        private static void Save(List<Account> accounts)
-        {
-            try
-            {
-                DBContext.Write(Filename, accounts);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            return Save(accounts);
         }
     }
 }

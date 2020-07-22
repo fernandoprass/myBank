@@ -1,7 +1,7 @@
 ﻿using API.Contracts;
 using API.Models;
 
-namespace API.Services
+namespace API.Implementation
 {
     /// <summary>The Customer Service class</summary>
     public class UserService : IUserService {

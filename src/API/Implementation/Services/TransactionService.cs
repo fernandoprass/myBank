@@ -3,7 +3,7 @@ using API.Models;
 using System;
 using System.Collections.Generic;
 
-namespace API.Repository
+namespace API.Implementation
 {
     /// <summary> The Transaction Service class </summary>
     public class TransactionService : ITransactionService

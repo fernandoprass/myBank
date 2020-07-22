@@ -1,8 +1,9 @@
 ﻿using API.Contracts;
+using API.Helpers;
 using API.Models;
 using System;
 
-namespace API.Repository
+namespace API.Implementation
 {
     /// <summary> The Account Service class </summary>
     public class AccountService : IAccountService

@@ -20,8 +20,8 @@ namespace API.Contracts
         /// <summary>UpdateBalance an account</summary>
         /// <param name="id">Account identifier</param>
         /// <param name="balance">Balance value</param>
-        /// <returns>The new account balance</returns>
-        void UpdateBalance(Guid id, double balance);
+        /// <returns>True is the balance was updated</returns>
+        bool UpdateBalance(Guid id, double balance);
     }
 }
 

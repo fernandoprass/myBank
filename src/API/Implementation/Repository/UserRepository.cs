@@ -1,12 +1,9 @@
 ﻿using API.Contracts;
-using API.DBContexts;
 using API.Models;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
-namespace API.Repository
+namespace API.Implementation
 {
     /// <summary>The Customer Repository class</summary>
     public class UserRepository : IUserRepository
