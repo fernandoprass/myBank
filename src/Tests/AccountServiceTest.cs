@@ -45,11 +45,11 @@ namespace Tests
             var account = GenerateAccount(customerId, initialCredit);
             var user = GenerateUser(1, "Tina", "Turner");
 
-            accountRepositoryMock.Setup(x => x.Add(account.CustomerId, 0)).Returns(account);
+            accountRepositoryMock.Setup(x => x.Add(account.CustomerId)).Returns(account);
             userServiceMock.Setup(x => x.GetById(customerId)).Returns(user);
 
             // Act
-            var result = accountService.Add(customerId, initialCredit);
+            var result = accountService.Add(customerId);
 
             // Assert
             result.Should().NotBeNull();

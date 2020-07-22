@@ -17,4 +17,8 @@
     <ProjectReference Include="..\ClassLibrary1\API.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="MyBankFiles\" />
+  </ItemGroup>
+
 </Project>

@@ -37,18 +37,24 @@ namespace API.Implementation
         #region PublicMethods
 
         /// <inheritdoc />
-        public Account Add(int customerId, double initialCredit)
+        public Account Add(int customerId)
         {
             var response = IsValidCustomer(customerId);
 
             if (response.Equals(Response.Success))
             {
-                return accountRepository.Add(customerId, initialCredit);
+                return accountRepository.Add(customerId);
             }
             else
             {
                 throw new Exception(response.Message);
             }
+        }
+
+        /// <inheritdoc />
+        public Account GetById(Guid id)
+        {
+            return accountRepository.GetById(id);
         }
 
         /// <inheritdoc />

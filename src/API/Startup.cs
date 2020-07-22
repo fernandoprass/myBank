@@ -51,6 +51,8 @@ namespace API
 
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<ITransactionService, TransactionService>();
+
+            services.AddTransient<IMyBankOrchestrator, MyBankOrchestrator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

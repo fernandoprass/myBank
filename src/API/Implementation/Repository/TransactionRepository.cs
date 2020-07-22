@@ -45,7 +45,7 @@ namespace API.Implementation
         }
 
         /// <inheritdoc />
-        public IEnumerable<TransactionDto> List(Guid accountId)
+        public IEnumerable<TransactionDto> GetList(Guid accountId)
         {
             return GetTransactionList().Where(x => x.AccountId == accountId)
                                         .OrderBy(x => x.Date)

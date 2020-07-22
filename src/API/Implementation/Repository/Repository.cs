@@ -18,7 +18,7 @@ namespace API.Implementation
         }
 
         /// <summary> Save data </summary>
-        /// <param name="obj">List of data to be saved </param>
+        /// <param name="obj">GetList of data to be saved </param>
         protected bool Save(object obj)
         {
             try

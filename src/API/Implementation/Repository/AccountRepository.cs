@@ -34,14 +34,14 @@ namespace API.Implementation
         }
 
         /// <inheritdoc />
-        public Account Add(int customerId, double initialCredit)
+        public Account Add(int customerId)
         {
             Account account = new Account
             {
                 Id = Guid.NewGuid(),
                 CreationDate = DateTimeOffset.UtcNow,
                 CustomerId = customerId,
-                Balance = initialCredit
+                Balance = 0.0
             };
 
             Save(account);
