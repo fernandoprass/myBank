@@ -4,12 +4,12 @@ using API.Models;
 using FluentAssertions;
 using Moq;
 using System;
-using API.Helpers;
 using Xunit;
 
 namespace Tests
 {
-    public class AccountServiceTest
+	/// <summary> The Account Service unit test </summary>
+    public class AccountServiceTest : BaseTest
     {
         private AccountService accountService { get; set; }
 
@@ -20,7 +20,7 @@ namespace Tests
         #region Facts
 
         /// <summary> The AccountServiceTest class constructor </summary>
-        public AccountServiceTest()
+        public AccountServiceTest() : base()
         {
             InitializeMocks();
             accountService = new AccountService(accountRepositoryMock.Object,
@@ -28,7 +28,7 @@ namespace Tests
         }
 
         /// <summary> Initialize Mocks </summary>
-        protected void InitializeMocks()
+        protected override void InitializeMocks()
         {
             accountRepositoryMock = new Mock<IAccountRepository>();
             userServiceMock = new Mock<IUserService>();
