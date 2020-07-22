@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 namespace API.Models {
+    /// <summary> The account data access object </summary>
     public partial class Account
     {
         public Guid Id { get; set; }
