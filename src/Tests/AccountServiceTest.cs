@@ -8,28 +8,25 @@ using Xunit;
 
 namespace Tests
 {
-    public class AccountServiceTest
+	/// <summary> The Account Service unit test </summary>
+    public class AccountServiceTest : BaseTest
     {
         private AccountService accountService { get; set; }
 
         private Mock<IAccountRepository> accountRepositoryMock;
 
-        private Mock<ITransactionService> transactionServiceMock;
-
         #region Facts
 
         /// <summary> The AccountServiceTest class constructor </summary>
-        public AccountServiceTest()
+        public AccountServiceTest() : base()
         {
-            InitializeMocks();
             accountService = new AccountService(accountRepositoryMock.Object);
         }
 
         /// <summary> Initialize Mocks </summary>
-        protected void InitializeMocks()
+        protected override void InitializeMocks()
         {
             accountRepositoryMock = new Mock<IAccountRepository>();
-            transactionServiceMock = new Mock<ITransactionService>();
         }
 
         [Fact]
