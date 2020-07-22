@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace API.Contracts
 {
-    /// <summary>The Account repository contract</summary>
+    /// <summary>The Transaction repository contract</summary>
     public interface ITransactionRepository
     {
         /// <summary>Add an new transaction</summary>

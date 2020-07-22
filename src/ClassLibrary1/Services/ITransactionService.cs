@@ -4,7 +4,7 @@ using API.Models;
 
 namespace API.Contracts
 {
-    /// <summary>The Account business service contract </summary>
+    /// <summary>The transaction service contract </summary>
     public interface ITransactionService
     {
         /// <summary>Add an new transaction</summary>

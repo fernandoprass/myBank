@@ -1,7 +1,7 @@
 ﻿using API.Models;
 
 namespace API.Contracts {
-    /// <summary>The User Repository class</summary>
+    /// <summary>The User Repository contract</summary>
     public interface IUserRepository {
 
         /// <summary> Get an User by identifier (Id) </summary>
