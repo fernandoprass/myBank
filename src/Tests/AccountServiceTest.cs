@@ -4,6 +4,7 @@ using API.Models;
 using FluentAssertions;
 using Moq;
 using System;
+using API.Helpers;
 using Xunit;
 
 namespace Tests
@@ -14,7 +15,7 @@ namespace Tests
 
         private Mock<IAccountRepository> accountRepositoryMock;
 
-        private Mock<ITransactionService> transactionServiceMock;
+        private Mock<IUserService> userServiceMock;
 
         #region Facts
 
@@ -22,14 +23,15 @@ namespace Tests
         public AccountServiceTest()
         {
             InitializeMocks();
-            accountService = new AccountService(accountRepositoryMock.Object);
+            accountService = new AccountService(accountRepositoryMock.Object,
+                                                userServiceMock.Object);
         }
 
         /// <summary> Initialize Mocks </summary>
         protected void InitializeMocks()
         {
             accountRepositoryMock = new Mock<IAccountRepository>();
-            transactionServiceMock = new Mock<ITransactionService>();
+            userServiceMock = new Mock<IUserService>();
         }
 
         [Fact]
@@ -43,6 +45,7 @@ namespace Tests
             var account = GenereteAccount(customerId, initialCredit);
 
             accountRepositoryMock.Setup(x => x.Add(account.CustomerId, 0)).Returns(account);
+            userServiceMock.Setup(x => x.GetById(customerId)).Returns();
 
             // Act
             var result = accountService.Add(customerId, initialCredit);
@@ -99,14 +102,27 @@ namespace Tests
         /// <returns></returns>
         private static Account GenereteAccount(int customerId, double balance)
         {
-            var account = new Account()
+            return new Account
             {
                 Id = Guid.NewGuid(),
                 Balance = balance,
                 CreationDate = DateTimeOffset.UtcNow,
                 CustomerId = customerId
             };
-            return account;
+        }
+
+        /// <summary> Create a new User object </summary>
+        /// <param name="customerId"></param>
+        /// <param name="balance"></param>
+        /// <returns></returns>
+        private static User GenereteUser()
+        {
+            return new User
+            {
+                Id = 1,
+                Name = "Tina",
+                Surname = "Turner",
+            };
         }
 
         #endregion

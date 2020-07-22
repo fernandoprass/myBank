@@ -1,0 +1,14 @@
+[
+  {
+    "Id": "46ea6d19-7b25-4f7d-ad04-9fc129e194a2",
+    "CreationDate": "2020-07-22T14:10:18.7937361+01:00",
+    "Balance": 0.0,
+    "CustomerId": 5
+  },
+  {
+    "Id": "6814763c-da73-4a57-981d-b2fc23d96265",
+    "CreationDate": "2020-07-22T13:10:22.4744721+00:00",
+    "Balance": 0.0,
+    "CustomerId": 1
+  }
+]

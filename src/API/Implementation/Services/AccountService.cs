@@ -11,50 +11,26 @@ namespace API.Implementation
 
         private readonly IAccountRepository accountRepository;
 
+        private readonly IUserService userService;
+
         /// <summary> the account service constructor </summary>
-        /// <param name="accountRepository"></param>
-        /// <param name="transactionService"></param>
-        public AccountService(IAccountRepository accountRepository)
+        /// <param name="accountRepository">The account repository </param>
+        /// <param name="userService">The user repository</param>
+        public AccountService(IAccountRepository accountRepository,
+            IUserService userService)
         {
             this.accountRepository = accountRepository;
+            this.userService = userService;
         }
 
         #region Validation
         /// <summary>Check if the custormer exists</summary>
         /// <param name="customerId">Customer identifier</param>
         /// <returns>TRUE if the customer exists</returns>
-        private bool IsValidCustomer(int customerId)
+        private Response IsValidCustomer(int customerId)
         {
-            //todo Implement IsValidCustomer
-            return true;
-        }
-
-        /// <summary>Check if the custormer exists</summary>
-        /// <param name="initialCredit">Initial credit</param>
-        /// <returns>TRUE if the value is greater than or equal to zero</returns>
-        private bool IsValidInitialCredit(double initialCredit)
-        {
-            return initialCredit >= 0;
-        }
-
-        /// <summary> Check the business rules to create a new account </summary>
-        /// <param name="customerId">Customer identifier</param>
-        /// <param name="initialCredit">Initial credit</param>
-        /// <returns></returns>
-        private Response ValidateRulesToCreate(int customerId, double initialCredit)
-        {
-            if (!IsValidCustomer(customerId))
-            {
-                return Response.InvalidCustomer;
-            }
-            else if (!IsValidInitialCredit(initialCredit))
-            {
-                return Response.InvalidInitialValue;
-            }
-            else
-            {
-                return Response.Success;
-            }
+            var user = userService.GetById(customerId);
+            return user != null ? Response.Success : Response.InvalidCustomer;
         }
         #endregion
 
@@ -63,7 +39,7 @@ namespace API.Implementation
         /// <inheritdoc />
         public Account Add(int customerId, double initialCredit)
         {
-            var response = ValidateRulesToCreate(customerId, initialCredit);
+            var response = IsValidCustomer(customerId);
 
             if (response.Equals(Response.Success))
             {
