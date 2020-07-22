@@ -10,15 +10,6 @@ namespace API.Repository
     /// <summary> The Transaction Repository class </summary>
     public class TransactionRepository : ITransactionRepository
     {
-        private readonly MyBankContext dbContext;
-
-        /// <summary>The AppointmentBusinessService class constructor</summary>
-        /// <param name="dbContext"></param>
-        public TransactionRepository(MyBankContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
-
         /// <inheritdoc />
         public Transaction Add(Guid accountId, double value)
         {
@@ -32,8 +23,6 @@ namespace API.Repository
 
             try
             {
-                dbContext.Entry(transaction).State = EntityState.Added;
-                dbContext.SaveChanges();
                 return transaction;
             }
             catch
@@ -45,10 +34,11 @@ namespace API.Repository
         /// <inheritdoc />
         public IEnumerable<TransactionDto> List(Guid accountId)
         {
-            return dbContext.Transaction.Where(x => x.AccountId == accountId)
-                                        .OrderBy(x => x.Date)
-                                        .Select(x => new TransactionDto(x.Date, x.Value))
-                                        .ToList();
+            //return dbContext.Transaction.Where(x => x.AccountId == accountId)
+            //                            .OrderBy(x => x.Date)
+            //                            .Select(x => new TransactionDto(x.Date, x.Value))
+            //                            .ToList();
+            return null;
         }
     }
 }

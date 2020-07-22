@@ -1,5 +1,4 @@
 ﻿using API.Models;
-using API.Repository;
 using System;
 
 namespace API.Contracts

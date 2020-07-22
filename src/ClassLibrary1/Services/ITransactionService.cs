@@ -1,9 +1,8 @@
-﻿using API.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using API.Models;
 
-namespace API.Repository
+namespace API.Contracts
 {
     /// <summary>The Account business service contract </summary>
     public interface ITransactionService
