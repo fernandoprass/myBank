@@ -10,7 +10,12 @@ namespace API.Contracts
         /// <param name="customerId">Customer identifier</param>
         /// <param name="initialCredit">Initial credit</param>
         /// <returns>A new Account object</returns>
-        Account Add(int customerId, double initialCredit);
+        Account Add(int customerId);
+
+        /// <summary> Get an Account by identifier (Id) </summary>
+        /// <param name="id">Account identifier</param>
+        /// <returns>An exists account object</returns>
+        Account GetById(Guid id);
 
         /// <summary>UpdateBalance an account</summary>
         /// <param name="id">Account identifier</param>

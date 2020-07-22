@@ -15,18 +15,23 @@ namespace Tests
 
         private Mock<IAccountRepository> accountRepositoryMock;
 
+        private Mock<IUserService> userServiceMock;
+
         #region Facts
 
         /// <summary> The AccountServiceTest class constructor </summary>
         public AccountServiceTest() : base()
         {
-            accountService = new AccountService(accountRepositoryMock.Object);
+            InitializeMocks();
+            accountService = new AccountService(accountRepositoryMock.Object,
+                                                userServiceMock.Object);
         }
 
         /// <summary> Initialize Mocks </summary>
         protected override void InitializeMocks()
         {
             accountRepositoryMock = new Mock<IAccountRepository>();
+            userServiceMock = new Mock<IUserService>();
         }
 
         [Fact]
@@ -37,12 +42,14 @@ namespace Tests
             int customerId = 1;
             double initialCredit = 0.0;
 
-            var account = GenereteAccount(customerId, initialCredit);
+            var account = GenerateAccount(customerId, initialCredit);
+            var user = GenerateUser(1, "Tina", "Turner");
 
-            accountRepositoryMock.Setup(x => x.Add(account.CustomerId, 0)).Returns(account);
+            accountRepositoryMock.Setup(x => x.Add(account.CustomerId)).Returns(account);
+            userServiceMock.Setup(x => x.GetById(customerId)).Returns(user);
 
             // Act
-            var result = accountService.Add(customerId, initialCredit);
+            var result = accountService.Add(customerId);
 
             // Assert
             result.Should().NotBeNull();
@@ -54,7 +61,7 @@ namespace Tests
         public void UpdateBalance_ReceivedPositiveValue_IncreaseBalance()
         {
             // Arrange
-            var account = GenereteAccount(1, 100);
+            var account = GenerateAccount(1, 100);
 
             double credit = 50;
 
@@ -73,7 +80,7 @@ namespace Tests
         public void UpdateBalance_ReceivedNegativeValue_DecreaseBalance()
         {
             // Arrange
-            var account = GenereteAccount(1, 100);
+            var account = GenerateAccount(1, 100);
 
             double debit = -20;
 
@@ -94,16 +101,29 @@ namespace Tests
         /// <param name="customerId"></param>
         /// <param name="balance"></param>
         /// <returns></returns>
-        private static Account GenereteAccount(int customerId, double balance)
+        private static Account GenerateAccount(int customerId, double balance)
         {
-            var account = new Account()
+            return new Account
             {
                 Id = Guid.NewGuid(),
                 Balance = balance,
                 CreationDate = DateTimeOffset.UtcNow,
                 CustomerId = customerId
             };
-            return account;
+        }
+
+        /// <summary> Create a new User object </summary>
+        /// <param name="customerId"></param>
+        /// <param name="balance"></param>
+        /// <returns></returns>
+        private static User GenerateUser(int id, string name, string surname)
+        {
+            return new User
+            {
+                Id = id,
+                Name = name,
+                Surname = surname,
+            };
         }
 
         #endregion

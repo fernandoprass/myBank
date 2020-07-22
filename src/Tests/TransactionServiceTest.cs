@@ -17,6 +17,8 @@ namespace Tests
 
         private Mock<ITransactionRepository> transactionRepositoryMock;
 
+        private Mock<IAccountService> accountServiceMock;
+
         private readonly DateTimeOffset FirstDateTime = new DateTimeOffset(DateTime.UtcNow.AddDays(-10));
 
         #region Facts
@@ -24,17 +26,18 @@ namespace Tests
         /// <summary> The AccountServiceTest class constructor </summary>
         public TransactionServiceTest()
         {
-            transactionService = new TransactionService(transactionRepositoryMock.Object);
+            transactionService = new TransactionService(transactionRepositoryMock.Object, accountServiceMock.Object);
         }
 
         /// <summary> Initialize Mocks </summary>
         protected override void InitializeMocks()
         {
             transactionRepositoryMock = new Mock<ITransactionRepository>();
+            accountServiceMock = new Mock<IAccountService>();
         }
 
         [Fact]
-        /// <summary> List the transactions </summary>
+        /// <summary> GetList the transactions </summary>
         public void List_ReturnListOfTransaction()
         {
             // Arrange
@@ -46,10 +49,10 @@ namespace Tests
                 new TransactionDto(FirstDateTime.AddDays(2), 300)
             };
 
-            transactionRepositoryMock.Setup(x => x.List(account.Id)).Returns(transactions);
+            transactionRepositoryMock.Setup(x => x.GetList(account.Id)).Returns(transactions);
 
             // Act
-            var result = transactionService.List(account.Id);
+            var result = transactionService.GetList(account.Id);
 
             // Assert
             result.Should().NotBeNull();

@@ -10,21 +10,31 @@ namespace API.Implementation
     {
         private readonly ITransactionRepository transactionRepository;
 
-        public TransactionService(ITransactionRepository transactionRepository)
+        private readonly IAccountService accountService;
+
+        public TransactionService(ITransactionRepository transactionRepository,
+                                  IAccountService accountService)
         {
             this.transactionRepository = transactionRepository;
+            this.accountService = accountService;
         }
 
         /// <inheritdoc />
         public Transaction Add(Guid accountId, double value)
         {
-            return transactionRepository.Add(accountId, value);
+            var transaction = transactionRepository.Add(accountId, value);
+            if (transaction != null)
+            {
+                accountService.UpdateBalance(accountId, value);
+            }
+
+            return transaction;
         }
 
         //// <inheritdoc />
-        public IEnumerable<TransactionDto> List(Guid accountId)
+        public IEnumerable<TransactionDto> GetList(Guid accountId)
         {
-            return transactionRepository.List(accountId);
+            return transactionRepository.GetList(accountId);
         }
     }
 }

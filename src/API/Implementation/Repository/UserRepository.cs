@@ -5,12 +5,10 @@ using System.Linq;
 
 namespace API.Implementation
 {
-    /// <summary>The Customer Repository class</summary>
+    /// <summary>The User Repository class</summary>
     public class UserRepository : IUserRepository
     {
-        private static string Filename => "User";
-
-        /// <summary> the user list is fixed </summary>
+        /// <summary> The user list is fixed </summary>
         private static List<User> GetUserList()
         {
             var users = new List<User>

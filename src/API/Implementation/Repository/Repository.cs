@@ -1,31 +1,21 @@
-﻿using System;
-using API.DBContexts;
+﻿using API.DBContexts;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace API.Implementation
 {
     /// <summary> The Repository abstract class </summary>
-    public abstract class Repository
+    public abstract class Repository<T>
     {
-        protected readonly string Filename;
-
-        /// <summary> The Repository class constructor </summary>
-        /// <param name="filename"></param>
-        protected Repository(string filename)
-        {
-            Filename = filename;
-        }
-
-        /// <summary> Save data </summary>
-        /// <param name="obj">List of data to be saved </param>
-        protected bool Save(object obj)
+        /// <summary> Add a new line </summary>
+        /// <param name="obj">GetList of data to be saved </param>
+        protected bool Add(T obj)
         {
             try
             {
-                var data = GetData();
+                var data= GetData();
                 data.Add(obj);
-                DBContext.Write(Filename, data);
+                DBContext<T>.Write(data);
                 return true;
             }
             catch (Exception e)
@@ -34,12 +24,27 @@ namespace API.Implementation
             }
         }
 
-        /// <summary> Get the data file </summary>
-        /// <returns></returns>
-        private List<Object> GetData()
+        /// <summary> Add data </summary>
+        /// <param name="obj">GetList of data to be saved </param>
+        protected bool Update(IList<T> data)
         {
-            var json = DBContext.Get(Filename);
-            return json != null ? JsonConvert.DeserializeObject<List<object>>(json) : new List<object>();
+            try
+            {
+                DBContext<T>.Write(data);
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary> Get all data from file </summary>
+        /// <returns></returns>
+        protected IList<T> GetData()
+        {
+            var list = DBContext<T>.GetData();
+            return list ?? new List<T>();
         }
     }
 }

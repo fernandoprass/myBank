@@ -8,9 +8,8 @@ namespace API.Contracts
     {
         /// <summary>Add an account</summary>
         /// <param name="customerId">Customer identifier</param>
-        /// <param name="initialCredit">Initial credit</param>
         /// <returns>A new Account object</returns>
-        Account Add(int customerId, double initialCredit);
+        Account Add(int customerId);
 
         /// <summary> Get an Account by identifier (Id) </summary>
         /// <param name="id">Account identifier</param>
