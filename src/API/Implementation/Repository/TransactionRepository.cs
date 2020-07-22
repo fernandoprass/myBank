@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace API.Implementation
 {
@@ -14,6 +15,7 @@ namespace API.Implementation
     {
         private static string Filename => "Transaction";
 
+        /// <summary> The Transaction Repository class constructor </summary>
         public TransactionRepository() : base(Filename)
         {
 
@@ -23,7 +25,6 @@ namespace API.Implementation
         /// <returns></returns>
         private static List<Transaction> GetTransactionList()
         {
-
             var json = DBContext.Get(Filename);
             return json != null ? JsonConvert.DeserializeObject<List<Transaction>>(json) : new List<Transaction>();
         }
@@ -39,14 +40,8 @@ namespace API.Implementation
                 Value = value
             };
 
-            try
-            {
-                return transaction;
-            }
-            catch
-            {
-                throw new Exception(Response.Failure.Message);
-            }
+            Save(transaction);
+            return transaction;
         }
 
         /// <inheritdoc />
@@ -56,7 +51,6 @@ namespace API.Implementation
                                         .OrderBy(x => x.Date)
                                         .Select(x => new TransactionDto(x.Date, x.Value))
                                         .ToList();
-            return null;
         }
     }
 }

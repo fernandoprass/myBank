@@ -22,7 +22,7 @@ namespace Tests
         public AccountServiceTest()
         {
             InitializeMocks();
-            accountService = new AccountService(accountRepositoryMock.Object, transactionServiceMock.Object);
+            accountService = new AccountService(accountRepositoryMock.Object);
         }
 
         /// <summary> Initialize Mocks </summary>
@@ -62,7 +62,7 @@ namespace Tests
             double credit = 50;
 
             accountRepositoryMock.Setup(x => x.GetById(account.Id)).Returns(account);
-            accountRepositoryMock.Setup(x => x.UpdateBalance(account)).Returns(account);
+            accountRepositoryMock.Setup(x => x.UpdateBalance(account.Id, account.Balance)).Returns(true);
 
             // Act
             var result = accountService.UpdateBalance(account.Id, credit);
@@ -81,7 +81,7 @@ namespace Tests
             double debit = -20;
 
             accountRepositoryMock.Setup(x => x.GetById(account.Id)).Returns(account);
-            //accountRepositoryMock.Setup(x => x.UpdateBalance(account.Id, debit)).Returns(account);
+            accountRepositoryMock.Setup(x => x.UpdateBalance(account.Id, account.Balance)).Returns(true);
 
             // Act
             var result = accountService.UpdateBalance(account.Id, debit);
