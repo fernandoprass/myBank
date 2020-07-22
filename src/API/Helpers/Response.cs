@@ -1,6 +1,4 @@
-﻿using API.Helpers;
-
-namespace API.Repository
+﻿namespace API.Helpers
 {
 
     public class Response : BaseResponse

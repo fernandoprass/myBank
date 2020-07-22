@@ -1,14 +1,11 @@
 ﻿using API.Contracts;
-using API.Contracts.Business;
-using API.Implementation.Business;
-using API.Models;
-using API.Repository;
-using API.Services;
+using API.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace API
 {

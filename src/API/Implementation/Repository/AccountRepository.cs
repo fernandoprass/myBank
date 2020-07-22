@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace API.Repository
+namespace API.Implementation
 {
     /// <summary> The Account Repository class </summary>
     public class AccountRepository : IAccountRepository
@@ -56,7 +56,7 @@ namespace API.Repository
 
         /// <summary> Save data </summary>
         /// <param name="accounts"></param>
-        private static void Save(List<Account> accounts)
+        private static void Save(IEnumerable<Account> accounts)
         {
             try
             {

@@ -1,4 +1,4 @@
-﻿namespace API.Repository
+﻿namespace API.Helpers
 {
     /// <summary>
     /// The constants system

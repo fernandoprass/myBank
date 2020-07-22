@@ -1,10 +1,10 @@
 using API.Contracts;
+using API.Implementation;
 using API.Models;
-using API.Repository;
+using FluentAssertions;
 using Moq;
 using System;
 using Xunit;
-using FluentAssertions;
 
 namespace Tests
 {
@@ -81,7 +81,7 @@ namespace Tests
             double debit = -20;
 
             accountRepositoryMock.Setup(x => x.GetById(account.Id)).Returns(account);
-            accountRepositoryMock.Setup(x => x.UpdateBalance(account)).Returns(account);
+            //accountRepositoryMock.Setup(x => x.UpdateBalance(account.Id, debit)).Returns(account);
 
             // Act
             var result = accountService.UpdateBalance(account.Id, debit);
