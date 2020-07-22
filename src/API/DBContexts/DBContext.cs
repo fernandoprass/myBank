@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using API.Exceptions;
+using API.Helpers;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -7,15 +10,13 @@ namespace API.DBContexts
     /// <summary> The DBContext class - Using JSON to persiste data </summary>
     public static class DBContext<T>
     {
-        private static string JsonFile => Directory.GetCurrentDirectory() + "\\MyBankFiles\\{0}.json";
-
         /// <summary> Full path of Json file (drive + folders + file + extension) </summary>
         private static string fullPath
         {
             get
             {
                 string filename = typeof(T).Name;
-                return string.Format(JsonFile, filename);
+                return string.Format(Constant.JSONFILE, filename);
             }
         }
 
@@ -23,11 +24,18 @@ namespace API.DBContexts
         /// <param name="obj"></param>
         public static void Write(object obj)
         {
-            var writer = JsonConvert.SerializeObject(obj, Formatting.Indented);
+            try
+            {
+                var writer = JsonConvert.SerializeObject(obj, Formatting.Indented);
 
-            CreateDirectory();
+                CreateDirectory();
 
-            File.WriteAllText(fullPath, writer);
+                File.WriteAllText(fullPath, writer);
+            }
+            catch (Exception e)
+            {
+                throw new MyBankException(e, Response.InputOutError);
+            }
         }
 
         /// <summary> Get data from Json file </summary>
@@ -41,7 +49,7 @@ namespace API.DBContexts
         /// <summary> Create the directory if it doesn't exists </summary>
         private static void CreateDirectory()
         {
-            var jsonDirectory = Directory.GetParent(JsonFile).FullName;
+            var jsonDirectory = Directory.GetParent(Constant.JSONFILE).FullName;
             if (!Directory.Exists(jsonDirectory))
             {
                 Directory.CreateDirectory(jsonDirectory);

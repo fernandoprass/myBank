@@ -10,6 +10,6 @@
     ///      the system administrator can update these values ​​whenever necessary (best choice)
     /// </summary>
     public static class Constant {
-
-   }
+        public const string JSONFILE = @"\MyBankFiles\{0}.json";
+    }
 }

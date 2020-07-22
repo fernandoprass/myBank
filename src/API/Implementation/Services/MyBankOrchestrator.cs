@@ -1,6 +1,7 @@
 ﻿using API.Contracts;
 using API.Helpers;
 using API.Models;
+using API.Exceptions;
 using API.Models.Dto;
 using System;
 
@@ -41,15 +42,22 @@ namespace API.Implementation
         public StatementDto GetStatement(Guid accountId)
         {
             var account = accountService.GetById(accountId);
-            var user = userService.GetById(account.CustomerId);
-            var transactions = transactionService.GetList(accountId);
-            return new StatementDto
+            if (account == null)
             {
-                Name = user.Name,
-                Surname = user.Surname,
-                Balance = account.Balance,
-                Transactions = transactions
-            };
+                throw new MyBankException(Response.InvalidAccount);
+            }
+            else
+            {
+                var user = userService.GetById(account.CustomerId);
+                var transactions = transactionService.GetList(accountId);
+                return new StatementDto
+                {
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    Balance = account.Balance,
+                    Transactions = transactions
+                };
+            }
         }
     }
 }
