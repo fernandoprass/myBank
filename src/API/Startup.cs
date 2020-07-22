@@ -1,4 +1,7 @@
 ﻿using API.Contracts;
+using API.Contracts.Business;
+using API.Implementation.Business;
+using API.Models;
 using API.Repository;
 using API.Services;
 using Microsoft.AspNetCore.Builder;
@@ -6,7 +9,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace API
 {
@@ -44,15 +46,12 @@ namespace API
         /// <param name="services"></param>
         private static void ConfigureDependencyInjection(IServiceCollection services)
         {
-<<<<<<< Updated upstream
-            services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<ICustomerService, CustomerService>();
-=======
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
->>>>>>> Stashed changes
+
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<IAccountService, AccountService>();
+
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<ITransactionService, TransactionService>();
         }

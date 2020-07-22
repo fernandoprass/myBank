@@ -9,6 +9,6 @@ namespace API.Contracts.Business {
    public interface ICustomerService {
       /// <summary>Get a patient by Id</summary>
       /// <param name="id">The patient Id</param>
-      Customer Get(int id);
+      User Get(int id);
    }
 }
