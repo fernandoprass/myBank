@@ -38,7 +38,7 @@ namespace API.Controllers
         /// <summary> Add a new account </summary>
         /// <param name="accountId">Customer identifier</param>
         /// <returns>The result of the operation</returns>
-        [HttpPost("GetStatement")]
+        [HttpGet("GetStatement")]
         public StatementDto GetStatement([FromQuery] Guid accountId)
         {
             var statement = myBankOrchestrator.GetStatement(accountId);
