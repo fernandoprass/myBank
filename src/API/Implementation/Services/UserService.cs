@@ -1,22 +1,22 @@
 ﻿using API.Contracts;
-using API.Contracts.Business;
 using API.Models;
 
-namespace API.Implementation.Business
+namespace API.Services
 {
     /// <summary>The Customer Service class</summary>
-    public class UserService : ICustomerService {
-      private readonly IUserRepository _userRepository;
+    public class UserService : IUserService {
+      private readonly IUserRepository userRepository;
 
       /// <summary>The AppointmentBusinessService class constructor</summary>
       /// <param name="appointmentDomainService"></param>
       public UserService(IUserRepository userRepository) {
-         this._userRepository = userRepository;
+         this.userRepository = userRepository;
       }
 
       /// <inheritdoc />
-      public User Get(int id) {
-         return _userRepository.Get(id);
+      public User GetById(int id)
+      {
+         return userRepository.GetById(id);
       }
    }
 }
