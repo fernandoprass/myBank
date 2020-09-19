@@ -29,13 +29,22 @@ namespace API.Implementation
         /// <inheritdoc />
         public Account AddAccount(int customerId, double initialCredit)
         {
-            var account = accountService.Add(customerId);
-            if (!initialCredit.NearlyEqual(0))
-            {
-                transactionService.Add(account.Id, initialCredit);
-            }
+            var response = IsValidCustomer(customerId);
 
-            return accountService.GetById(account.Id);
+            if (response.Equals(Response.Success))
+            {
+                var account = accountService.Add(customerId);
+                if (!initialCredit.NearlyEqual(0))
+                {
+                    transactionService.Add(account.Id, initialCredit);
+                }
+
+                return accountService.GetById(account.Id);
+            }
+            else
+            {
+                throw new MyBankException(response);
+            }
         }
 
         /// <inheritdoc />
@@ -59,5 +68,16 @@ namespace API.Implementation
                 };
             }
         }
+
+        #region Validation
+        /// <summary>Check if the custormer exists</summary>
+        /// <param name="customerId">Customer identifier</param>
+        /// <returns>TRUE if the customer exists</returns>
+        private Response IsValidCustomer(int customerId)
+        {
+            var user = userService.GetById(customerId);
+            return user != null ? Response.Success : Response.InvalidCustomer;
+        }
+        #endregion
     }
 }
