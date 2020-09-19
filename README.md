@@ -1,8 +1,8 @@
 ## Introduction
 
-This is a .Net Coresolution to presents microservice concepts
+This is a .Net Coresolution to presents how to create WCF (Windows Communication Foundation) applications with C#
 
-This is the first version, there some improveds to be done:
+This is version 0.2, there are some improvements that must be made:
 - NET core 2.2 is not the best choice, I used it because I couldn't install different versions on the PC used to write this example
 - ~~The Account service depends on User service, the question IsCustomerValid should be moved to the BankOrchestrator~~
 - Use asynchronous and tasks methods
