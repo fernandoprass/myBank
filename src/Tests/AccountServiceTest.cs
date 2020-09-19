@@ -23,8 +23,8 @@ namespace Tests
         public AccountServiceTest() : base()
         {
             InitializeMocks();
-            accountService = new AccountService(accountRepositoryMock.Object,
-                                                userServiceMock.Object);
+            accountService = new AccountService(accountRepositoryMock.Object
+            );
         }
 
         /// <summary> Initialize Mocks </summary>
