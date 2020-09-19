@@ -4,7 +4,7 @@ This is a .Net Coresolution to presents microservice concepts
 
 This is the first version, there some improveds to be done:
 - NET core 2.2 is not the best choice, I used it because I couldn't install different versions on the PC used to write this example
-- ~~ The Account service depends on User service, the question IsCustomerValid should be moved to the BankOrchestrator~~
+- ~~The Account service depends on User service, the question IsCustomerValid should be moved to the BankOrchestrator~~
 - Use asynchronous and tasks methods
 - Add a unit test to MyBankOrchestrator
 
